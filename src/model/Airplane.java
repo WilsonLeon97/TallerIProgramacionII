@@ -1,7 +1,5 @@
 package model;
 
-import java.util.*;
-
 public class Airplane {
 
     private String IdAirplane;
@@ -66,7 +64,11 @@ public class Airplane {
 
     public String toString() {
     
-        return "";
+        return "Airplane { " + '\'' +
+        		"idAirplane= " + IdAirplane + '\''
+        		+ "capacity = " + capacity + '\''
+        		+ "year= "+ year + 
+        		"}";
     }
 
 }

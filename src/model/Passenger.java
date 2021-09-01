@@ -1,7 +1,8 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.time.Period;
+import java.util.ArrayList;
 
 
 public abstract class Passenger {
@@ -16,7 +17,11 @@ public abstract class Passenger {
 
     private LocalDate dateBirthday;
     
-    protected Fly fly;
+    private ArrayList<Ticket> tickets;
+    
+    private Ticket ticket;
+    
+    private Fly fly;
 
     
     public Passenger(String idPassenger, String firstName, String lastName, String country, LocalDate dateBirthday) {
@@ -26,11 +31,10 @@ public abstract class Passenger {
     	this.lastName = lastName;
     	this.country = country;
     	this.dateBirthday = dateBirthday;
-    	this.fly = fly;
     	
     }
 
-    public void setIdPassenger(String IdPassenger) {
+    public void setIdPassenger(String idPassenger) {
     	
     	this.idPassenger = idPassenger;
 
@@ -50,6 +54,10 @@ public abstract class Passenger {
     public void setCountry(String country) {
         
     	this.country = country;
+    }
+    
+    public void setFly(Fly fly) {
+    	this.fly = fly;
     }
 
     public String getIdPassenger() {
@@ -71,28 +79,43 @@ public abstract class Passenger {
         
         return country;
     }
+    
+    public Fly getFly() {
+    	return fly;
+    }
 
     public byte getAge() {
         
-        return 1;
+    	Period period =  Period.between(dateBirthday, LocalDate.now());
+    	
+        return (byte) period.getYears();
     }
-
-
-    public Fly getFly() {
-        
-        return null;
+    
+    public boolean addToFly(Fly fly, short shorty) {
+    	
+    	return false;
     }
-
-
-    public void setFly(Fly fly) {
-        
-        this.fly = fly;
+    
+    public boolean addToFly(Fly fly, short shorty, float flot) {
+    	
+    	return false;
     }
-
-
-    public double getTicketCost() {
- 
-        return 0.0d;
+    
+    public ArrayList<Ticket> getTickets(){
+    	
+    	return tickets;
     }
+    
+    public double calcOvercrowed() {
+    	double overcrowed = fly.getTarget().getValueTicket();
+    	if(ticket.getWeight() > 23 && ticket.getWeight() < 33) {
+    		return overcrowed  + (overcrowed * 0.1);
+    	}else if (ticket.getWeight() > 33) {
+    		return overcrowed + (overcrowed * 0.3);
+    	}
+    	return 0;
+    }
+    
+    public abstract double getTicketCost();
 
 }

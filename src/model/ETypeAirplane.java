@@ -1,14 +1,12 @@
 package model;
 
-import java.util.*;
+public enum ETypeAirplane {
 
-public class ETypeAirplane {
-
-    public ETypeAirplane() {
-    }
-
-    public void AirbusA330(){
-    	
-    };
+    AirbusA330,
+    Boeing767,
+    Boeing747,
+    AirbusA380,
+    Cesna
+    
 
 }

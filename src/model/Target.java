@@ -1,10 +1,8 @@
 package model;
 
-import java.util.*;
-
 public class Target {
 	
-    private String IdTarget;
+    private String idTarget;
 
     private String nameTarget;
     
@@ -12,89 +10,64 @@ public class Target {
 
     private float distance;
 
-	public Target(String IdTarget, String nameTraget, double valueTicket, float distance) {
+	public Target(String idTarget, String nameTarget, double valueTicket, float distance) {
 		
-		this.IdTarget = IdTarget;
+		this.idTarget = idTarget;
 		this.nameTarget = nameTarget;
 		this.valueTicket = valueTicket;
 		this.distance = distance;
     
 	}
 
-    /**
-     * @param String 
-     * @return
-     */
-    public void setIdTarget(String IdTarget) {
-        // TODO implement here
-        return;
+
+    public void setIdTarget(String idTarget) {
+        this.idTarget = idTarget;
     }
 
-    /**
-     * @param String 
-     * @return
-     */
+    
     public void setNameTarget(String nameTarget) {
-        // TODO implement here
-        return;
+    	this.nameTarget = nameTarget;
     }
 
-    /**
-     * @param double 
-     * @return
-     */
+
     public void setValueTicket(double valueTicket) {
-        // TODO implement here
-        return;
+        this.valueTicket = valueTicket;
     }
 
-    /**
-     * @return
-     */
+
     public String getIdTarget() {
-        // TODO implement here
-        return "";
+        return idTarget;
     }
 
-    /**
-     * @return
-     */
+
     public String getNameTarget() {
-        // TODO implement here
-        return "";
+        return nameTarget;
     }
 
-    /**
-     * @return
-     */
+
     public double getValueTicket() {
-        // TODO implement here
-        return 0.0d;
+        return valueTicket;
     }
 
-    /**
-     * @param float 
-     * @return
-     */
+
     public void setDistance(float distance) {
-        // TODO implement here
-        return;
+        this.distance = distance;
     }
 
-    /**
-     * @return
-     */
+
     public float getDistance() {
-        // TODO implement here
-        return 0.0f;
+    	return distance;
     }
 
-    /**
-     * @return
-     */
+
     public String toString() {
-        // TODO implement here
-        return "";
+        return "Target{" + 
+        		"idTarget= " + idTarget + '\'' +
+        		", nameTarget= " + nameTarget + '\'' +
+        		", valueTicket= " + valueTicket + '\'' +
+        		", distance=" + distance +
+        		"}";
+        		
     }
 
 }

@@ -4,9 +4,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
+import exceptions.ExceptionDate;
+
 public class Fly {
 
-    private String idFly;
+    private String number;
 
     private LocalDate date;
 
@@ -18,10 +20,10 @@ public class Fly {
     
     private ArrayList<Passenger> passengers;
 
-    public Fly(String idFly, LocalDate date, LocalTime time, Airplane airplane, Target target) {
+    public Fly(String number, LocalDate date, LocalTime time, Airplane airplane, Target target) {
     	
     	passengers = new ArrayList<>();
-    	this.idFly = idFly;
+    	this.number = number;
     	this.date = date;
     	this.time = time;
     	this.airplane = airplane;
@@ -29,8 +31,11 @@ public class Fly {
 
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDate date) throws ExceptionDate {
 
+        if( date.isBefore( LocalDate.now())) {
+        	//throw new ExceptionDate(String);
+        }
         this.date = date;
         
     }
@@ -49,20 +54,33 @@ public class Fly {
     public LocalTime getTime() {
 
         return time;
+    } 
+
+    public boolean addPassenger(Passenger passenger) {
+    	if(airplane.getCapacity() > passengers.size() && !passengers.contains(passenger)) {
+    		passengers.add(passenger);
+    		if( passenger instanceof Registered ) {
+    			((Registered) passenger).setMiles( ((Registered) passenger).getMiles() + target.getDistance());
+    		}
+    		
+    		return true;
+    	}
+
+        return false;
     }
 
-    public boolean addPassenger(Passenger passengers) {
-
-        return true;
-    }
-
-    public void addPassenger(ArrayList<Passenger> passengers) {
+    public boolean addPassenger(ArrayList<Passenger> passengers) {
+    	if ( airplane.getCapacity() - this.passengers.size() > passengers.size()) {
+    		passengers.forEach( passenger -> this.passengers.add(passenger));
+    		return true;
+    	}
+    	return false;
  
     }
 
     public ArrayList<Passenger> getPassengers() {
 
-        return null;
+        return passengers;
     }
 
     public void setTarget(Target target) {
@@ -89,15 +107,15 @@ public class Fly {
     }
 
 
-    public void setIdFly(String idFly) {
+    public void setnumber(String number) {
 
-        this.idFly = idFly;
+        this.number = number;
     }
 
 
-    public String getIdFly() {
+    public String getnumber() {
 
-        return idFly;
+        return number;
     }
 
     /**

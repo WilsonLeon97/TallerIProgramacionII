@@ -1,37 +1,42 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.*;
+
 
 public class Occasional extends Passenger {
+	
+	private LocalDate dateLastFly;
+	
+	private Fly fly;
 
-    public Occasional(String idPassenger, String firstName, String lastName, String country, LocalDate dateBirthday) {
+    public Occasional(String idPassenger, String firstName, String lastName, String country, LocalDate dateBirthday, LocalDate dateLastFly) {
 		super(idPassenger, firstName, lastName, country, dateBirthday);
-		// TODO Auto-generated constructor stub
+    
+    }
+
+
+	public LocalDate getDateLastFly() {
+		return dateLastFly;
 	}
 
-	public byte OVERCROWDED = 100;
 
-    private boolean overcrowed;
+	public void setDateLastFly(LocalDate dateLastFly) {
+		this.dateLastFly = dateLastFly;
+	}
 
-   // public void Occasional(String idPassenger, String firstName, String lastName, String country, LocalDate dateBirthday, boolean overcrowed) {
-    //	
-    	//this.idPassenger = idPassenger;
-//    	this.firstName = firstName;
-  //  	this.lastName = lastName;
-    //	this.country = country;
-    	//this.dateBirthday = dateBirthday;
-        
-    //}
 
-    public void setOvercrowed(boolean overcrowed) {
-
-        this.overcrowed = overcrowed;
-    }
-
-    public boolean isOvercrowed() {
-        
-        return false;
-    }
-
+	@Override
+	public double getTicketCost() {
+		
+		double valTicket = fly.getTarget().getValueTicket();
+    	
+    	int years = LocalDate.now().getYear() - fly.getAirplane().getYear();
+    	if( years > 10 ) {
+    		return valTicket - ( valTicket - valTicket * 0.1);
+    	}
+    	
+    	return valTicket + calcOvercrowed() ;
+    	}
+    
+    
 }
